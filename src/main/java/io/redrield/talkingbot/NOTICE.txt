@@ -1,0 +1,3 @@
+You may be decompiling this wondering if I copied the code of this premium resource; https://www.spigotmc.org/resources/talkingbot-fully-customizable-1-9-1-8-1-7-support-java-7-8-support.21491/
+I didn't. I found that it was far too simple to be premium, and opted to recreate it for the masses, as best as I could
+-Redrield

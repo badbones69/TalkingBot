@@ -1,0 +1,29 @@
+group 'io.redrield'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+jar.archiveName = "TalkingBot.jar"
+def artifactName = jar.archiveName
+def userHome = System.getProperty("user.home")
+
+repositories {
+    mavenCentral()
+    maven {
+        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+    }
+    maven {
+        url = 'https://oss.sonatype.org/content/repositories/snapshots/'
+    }
+}
+
+dependencies {
+    compile 'org.spigotmc:spigot-api:1.9.4-R0.1-SNAPSHOT'
+}
+
+task copyJar(type: Copy) {
+    from "build/libs/$artifactName"
+    into "$userHome/Desktop/SpigotServer/plugins"
+}

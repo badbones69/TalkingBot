@@ -1,0 +1,43 @@
+#The name that players use to start a conversation with the bot
+#Don't use special characters here
+bot-name: 'Jeff'
+#The prefix of the bot, that will be visible in chat
+bot-prefix: '&7[&c&lJeff&7] &7&l'
+#The time (in ticks) the bot will wait until responding to your question
+response-speed: 10
+#The message sent to the player if they use the /talkingbot command incorrectly
+incorrect-usage: '&8[&c&lTalkingBot&8] &cIncorrect usage! Use &o/talkingbot <toggle/reload/(add)> (message) (response)&c!'
+#The message sent to the player if the plugin was successfully reloaded
+reloaded: '&8[&c&lTalkingBot&8] &aMessage successfully added to the TalkingBot config!'
+#The mesasge sent to the player when they don't have permission to use a certain command
+no-permission: '&cYou do not have permission to do that!'
+#The message sent to the player when they successfully toggle the bot ON
+toggle-on: '&8[&c&lTalkingBot&8] &3You will now &2&lRECEIVE &3&lbot messages!'
+#The message sent to the player when they successfully toggle the bot OFF
+toggle-off: '&8[&c&lTalkingBot&8] &3You will now &4&lNOT receive &3&lbot messages!'
+#The message sent to the player when they successfully added a message to the miscellaneous section of the config
+message-added: '&8[&c&lTalkingBot&8] &aMessage successfully added to the TalkingBot config!'
+#Used when either the only thing mentioned was the bot's name, or the question was not found in the config
+no-match:
+  bot-name-only:
+    - Hi!
+  question-not-found:
+    - What do you mean %player%?
+
+#Valid questions the bot will respond to
+sayings:
+  are:
+    you:
+      a:
+        banana:
+          - Absolutely
+          - "I don't know how to answer this question..."
+      an:
+        apple:
+          - How did you know?
+
+#Can be added with /talkingbot add <message> <response> MUST be typed in all lowercase, with dashes (-) replacing spaces, for the message.
+miscellaneous:
+  hi-friend:
+    - Hello
+    - Hi! How are you?

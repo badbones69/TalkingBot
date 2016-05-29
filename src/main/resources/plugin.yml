@@ -1,0 +1,8 @@
+name: TalkingBot
+author: Redrield
+version: 1.0
+main: io.redrield.talkingbot.TalkingBot
+commands:
+  talkingbot:
+    description: Main command for TalkingBot plugin
+    usage: /talkingbot <reload|toggle|add <message> <response>>
