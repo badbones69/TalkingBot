@@ -18,7 +18,7 @@ public class BotCommands implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender cs, Command cmd, String label, String[] args) {
-        if(cmd.getName().equalsIgnoreCase("talkingbot") && cs instanceof Player) {
+        if(cmd.getName().equalsIgnoreCase("chatbot") && cs instanceof Player) {
             Player p = (Player) cs;
             if(args.length==0) {
                 p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("incorrect-usage")));
@@ -26,7 +26,7 @@ public class BotCommands implements CommandExecutor {
             }
             if(args.length==1) {
                 if(args[0].equalsIgnoreCase("reload")) {
-                    if(p.hasPermission("talkingbot.reload")) {
+                    if(p.hasPermission("chatbot.reload")) {
                         plugin.reloadConfig();
                         p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("reloaded")));
                         return true;
@@ -36,7 +36,7 @@ public class BotCommands implements CommandExecutor {
                     }
                 }
                 if(args[0].equalsIgnoreCase("toggle")) {
-                    if(p.hasPermission("talkingbot.toggle")) {
+                    if(p.hasPermission("chatbot.toggle")) {
                         boolean old = plugin.getToggleState().get(p);
                         plugin.getToggleState().put(p, !old);
                         p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("toggle-" + (old ? "on" : "off"))));
@@ -49,7 +49,7 @@ public class BotCommands implements CommandExecutor {
             }
             if(args.length>=2) {
                 if(args[0].equalsIgnoreCase("add")) {
-                    if(p.hasPermission("talkingbot.add")) {
+                    if(p.hasPermission("chatbot.add")) {
                         String msg = args[1];
                         String res = "";
                         for(int i = 2; i < args.length; i++) {

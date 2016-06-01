@@ -1,8 +1,8 @@
-name: TalkingBot
+name: ChatBot
 author: Redrield
 version: 1.0
 main: io.redrield.talkingbot.TalkingBot
 commands:
-  talkingbot:
-    description: Main command for TalkingBot plugin
-    usage: /talkingbot <reload|toggle|add <message> <response>>
+  chatbot:
+    description: Main command for ChatBot plugin
+    usage: /chatbot <reload|toggle|add <message> <response>>

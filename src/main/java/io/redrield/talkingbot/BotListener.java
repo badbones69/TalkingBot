@@ -27,7 +27,7 @@ public class BotListener implements Listener {
         Player p = e.getPlayer();
         String[] split = msg.split(" ");
         StringBuilder lookNew = new StringBuilder();
-        if(plugin.getToggleState().get(p) || !p.hasPermission("talkingbot.interact")) {
+        if(plugin.getToggleState().get(p) || !p.hasPermission("chatbot.interact")) {
             return;
         }
         for(int i = 0; i < split.length; i++) {
@@ -36,8 +36,23 @@ public class BotListener implements Listener {
                 continue;
             }
             lookNew.append("-").append(split[i]);
+            if(plugin.getConfig().contains("miscellaneous." + lookNew.toString().toLowerCase())) {
+                StringBuilder sb = new StringBuilder();
+                for(int j = i+1; j<split.length; j++) {
+                    sb.append(j!=i+1?" ":"").append(split[j]);
+                }
+                boolean match = false;
+                for(String s : plugin.getConfig().getStringList("ignore-words")) {
+                    if(sb.toString().replace("!", "").replace("?", "").replace(".", "").equalsIgnoreCase(s)) {
+                        match = true;
+                        break;
+                    }
+                }
+                if(match) break;
+                sb = new StringBuilder();
+            }
         }
-        if(plugin.getConfig().contains("miscellaneous." + lookNew.toString())) {
+        if(plugin.getConfig().contains("miscellaneous." + lookNew.toString().toLowerCase())) {
             List<String> selection = plugin.getConfig().getStringList("miscellaneous." + lookNew.toString());
             String say = ChatColor.translateAlternateColorCodes('&', selection.get(new Random().nextInt(selection.size())).replace("%player%", p.getName()));
             plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> Bukkit.broadcastMessage(prefix + " " + say));
@@ -60,11 +75,23 @@ public class BotListener implements Listener {
             }
 
             String look = "sayings";
+            StringBuilder sb = new StringBuilder();
 
 
-            for (int i = 0; i < lookup.length; i++) {
+            for (int i = 1; i < lookup.length; i++) {
                 look = look + "." + lookup[i];
+                if(plugin.getConfig().contains(look)) {
+                    for(int j = i+1; j < lookup.length; j++) {
+                        sb.append(j!=i+1?" ":"").append(lookup[j]);
+                    }
+                    if(plugin.getConfig().getStringList("ignore-words").contains(sb.toString())) {
+                        break;
+                    }
+                    sb = new StringBuilder();
+                }
             }
+            p.sendMessage(look);
+            p.sendMessage(sb.toString());
 
             if(plugin.getConfig().contains(look)) {
                 List<String> selection = plugin.getConfig().getStringList(look);

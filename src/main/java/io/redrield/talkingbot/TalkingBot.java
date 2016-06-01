@@ -14,7 +14,7 @@ public class TalkingBot extends JavaPlugin{
     public void onEnable() {
         saveDefaultConfig();
         getServer().getPluginManager().registerEvents(new BotListener(this), this);
-        getCommand("talkingbot").setExecutor(new BotCommands(this));
+        getCommand("chatbot").setExecutor(new BotCommands(this));
     }
 
     public Map<Player, Boolean> getToggleState() {
