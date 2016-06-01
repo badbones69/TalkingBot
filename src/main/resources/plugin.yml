@@ -2,6 +2,7 @@ name: ChatBot
 author: Redrield
 version: 1.0
 main: io.redrield.talkingbot.TalkingBot
+softdepend: PlaceholderAPI
 commands:
   chatbot:
     description: Main command for ChatBot plugin
