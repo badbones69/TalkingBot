@@ -17,6 +17,8 @@ toggle-on: '&8[&c&lChatBot&8] &3You will now &2&lRECEIVE &3&lbot messages!'
 toggle-off: '&8[&c&ChatBot&8] &3You will now &4&lNOT receive &3&lbot messages!'
 #The message sent to the player when they successfully added a message to the miscellaneous section of the config
 message-added: '&8[&c&lChatBot&8] &aMessage successfully added to the TalkingBot config!'
+special-match:
+
 #Used when either the only thing mentioned was the bot's name, or the question was not found in the config
 no-match:
   bot-name-only:

@@ -2,6 +2,7 @@ package io.redrield.talkingbot;
 
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -25,7 +26,16 @@ public class BotListener implements Listener {
         String prefix = ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("bot-prefix"));
         String msg = e.getMessage();
         Player p = e.getPlayer();
+        ConfigurationSection conf = plugin.getConfig().getConfigurationSection("special-match");
         String[] split = msg.split(" ");
+        for(String s : split) {
+            if(conf.contains(s)) {
+                if(conf.getBoolean(s + ".block")) {
+                    e.setCancelled(true);
+                }
+                Bukkit.broadcastMessage(prefix + ChatColor.translateAlternateColorCodes('&', conf.getString(s + ".response")));
+            }
+        }
         StringBuilder lookNew = new StringBuilder();
         if(plugin.getToggleState().get(p) || !p.hasPermission("chatbot.interact")) {
             return;
@@ -62,8 +72,6 @@ public class BotListener implements Listener {
 
             String[] lookup = msg.substring(plugin.getConfig().getString("bot-name").length()).split(" ");
 
-
-
             if(lookup.length == 1) {
                 plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> {
                     List<String> selection = plugin.getConfig().getStringList("no-match.bot-name-only");
@@ -90,8 +98,7 @@ public class BotListener implements Listener {
                     sb = new StringBuilder();
                 }
             }
-            p.sendMessage(look);
-            p.sendMessage(sb.toString());
+
 
             if(plugin.getConfig().contains(look)) {
                 List<String> selection = plugin.getConfig().getStringList(look);
