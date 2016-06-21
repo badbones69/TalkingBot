@@ -5,4 +5,4 @@ main: io.redrield.talkingbot.TalkingBot
 commands:
   chatbot:
     description: Main command for ChatBot plugin
-    usage: /chatbot <reload|toggle|add <message> <response>>
+    usage: /chatbot <reload|toggle|add> <message> <response>

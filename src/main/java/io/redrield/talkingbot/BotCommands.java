@@ -10,22 +10,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BotCommands implements CommandExecutor {
+	
     TalkingBot plugin;
-
+    
     public BotCommands(TalkingBot plugin) {
         this.plugin = plugin;
     }
-
+    
     @Override
     public boolean onCommand(CommandSender cs, Command cmd, String label, String[] args) {
-        if(cmd.getName().equalsIgnoreCase("chatbot") && cs instanceof Player) {
-            Player p = (Player) cs;
-            if(args.length==0) {
-                p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("incorrect-usage")));
-                return true;
-            }
-            if(args.length==1) {
-                if(args[0].equalsIgnoreCase("reload")) {
+    	if(cmd.getName().equalsIgnoreCase("chatbot") && cs instanceof Player) {
+    		Player p = (Player) cs;
+    		if(args.length==0) {
+    			p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("incorrect-usage")));
+    			return true;
+    		}
+    		if(args.length==1) {
+    			if(args[0].equalsIgnoreCase("reload")) {
                     if(p.hasPermission("chatbot.reload")) {
                         plugin.reloadConfig();
                         p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("reloaded")));

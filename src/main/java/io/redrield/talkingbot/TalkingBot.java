@@ -34,7 +34,8 @@ public class TalkingBot extends JavaPlugin{
         return toggleState;
     }
 
-    private void update() throws IOException {
+    @SuppressWarnings("resource")
+	private void update() throws IOException {
         URL spigot = new URL("http://spigotmc.org/api/general.php");
         HttpURLConnection con = (HttpURLConnection) spigot.openConnection();
         con.setDoOutput(true);

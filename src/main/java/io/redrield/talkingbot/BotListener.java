@@ -69,9 +69,7 @@ public class BotListener implements Listener {
             return;
         }
         if(split.length>0 && split[0].equalsIgnoreCase(plugin.getConfig().getString("bot-name"))) {
-
             String[] lookup = msg.substring(plugin.getConfig().getString("bot-name").length()).split(" ");
-
             if(lookup.length == 1) {
                 plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> {
                     List<String> selection = plugin.getConfig().getStringList("no-match.bot-name-only");
@@ -84,7 +82,6 @@ public class BotListener implements Listener {
 
             String look = "sayings";
             StringBuilder sb = new StringBuilder();
-
 
             for (int i = 1; i < lookup.length; i++) {
                 look = look + "." + lookup[i];
@@ -99,7 +96,6 @@ public class BotListener implements Listener {
                 }
             }
 
-
             if(plugin.getConfig().contains(look)) {
                 List<String> selection = plugin.getConfig().getStringList(look);
                 final String say = selection.get(new Random().nextInt(selection.size())).replace("%player%", p.getName());
@@ -112,8 +108,6 @@ public class BotListener implements Listener {
                     Bukkit.broadcastMessage(prefix + " " +  say);
                 }, plugin.getConfig().getLong("response-speed"));
             }
-
-
         }
     }
 
